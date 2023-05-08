@@ -6,12 +6,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{__('Payments')}}</h1>
+                    <h1>{{ __('Payments') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a class="text-muted" href="{{route('admin.payments.index')}}">{{__('Payments')}}</a>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a class="text-muted"
+                                href="{{ route('admin.payments.index') }}">{{ __('Payments') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -47,6 +48,7 @@
                                 <th>{{ __('Total Price') }}</th>
                                 <th>{{ __('Payment ID') }}</th>
                                 <th>{{ __('Payment Method') }}</th>
+                                <th>{{ __('Status') }}</th>
                                 <th>{{ __('Created at') }}</th>
                                 <th></th>
                             </tr>
@@ -73,20 +75,55 @@
                 serverSide: true,
                 stateSave: true,
                 ajax: "{{ route('admin.payments.datatable') }}",
-                order: [[ 10, "desc" ]],
-                columns: [
-                    {data: 'id',name: 'payments.id'},
-                    {data: 'type'},
-                    {data: 'user'},
-                    {data: 'amount'},
-                    {data: 'price'},
-                    {data: 'tax_value'},
-                    {data: 'tax_percent'},
-                    {data: 'total_price'},
-                    {data: 'payment_id'},
-                    {data: 'payment_method'},
-                    {data: 'created_at', type: 'num', render: {_: 'display', sort: 'raw'}},
-                    {data: 'actions' , sortable : false},
+                order: [
+                    [10, "desc"]
+                ],
+                columns: [{
+                        data: 'id',
+                        name: 'payments.id'
+                    },
+                    {
+                        data: 'type'
+                    },
+                    {
+                        data: 'user'
+                    },
+                    {
+                        data: 'amount'
+                    },
+                    {
+                        data: 'price'
+                    },
+                    {
+                        data: 'tax_value'
+                    },
+                    {
+                        data: 'tax_percent'
+                    },
+                    {
+                        data: 'total_price'
+                    },
+                    {
+                        data: 'payment_id'
+                    },
+                    {
+                        data: 'payment_method'
+                    },
+                    {
+                        data: 'status'
+                    },
+                    {
+                        data: 'created_at',
+                        type: 'num',
+                        render: {
+                            _: 'display',
+                            sort: 'raw'
+                        }
+                    },
+                    {
+                        data: 'actions',
+                        sortable: false
+                    },
                 ],
                 fnDrawCallback: function(oSettings) {
                     $('[data-toggle="popover"]').popover();
@@ -94,5 +131,4 @@
             });
         });
     </script>
-
 @endsection
